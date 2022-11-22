@@ -14,6 +14,16 @@ const {
     GraphQLEnumType,
 } = require('graphql')
 
+const ClientType = new GraphQLObjectType({
+    name: 'Client',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+    }),
+})
+
 const ProjectType = new GraphQLObjectType({
     name: 'Project',
     fields: () => ({
@@ -25,19 +35,9 @@ const ProjectType = new GraphQLObjectType({
             type: ClientType,
             resolve(parent, args) {
                 return Client.findById(parent.clientId)
-                // return clients.find((client) => client.id === parent.clientId) //parent here refers to "Project"
+                // return clients.find((client) => client.id === parent.clientId) //parent here refers to "Project", which has a field of "clientId"
             },
         },
-    }),
-})
-
-const ClientType = new GraphQLObjectType({
-    name: 'Client',
-    fields: () => ({
-        id: { type: GraphQLID },
-        name: { type: GraphQLString },
-        email: { type: GraphQLString },
-        phone: { type: GraphQLString },
     }),
 })
 
