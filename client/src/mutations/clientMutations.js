@@ -16,6 +16,7 @@ const ADD_CLIENT = gql`
         addClient(newClient: $newClient) {
             id
             name
+        }
     }
 `
 
