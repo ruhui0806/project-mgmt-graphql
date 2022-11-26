@@ -2,8 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
+import { ADD_CLIENT } from '../mutations/clientMutations'
 
 export default function AddClientModal() {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+
+    const onSubmit = (event) => {
+        event.preventDefault()
+        console.log(name, phone, email)
+    }
+
     return (
         <div>
             <button
@@ -31,7 +41,7 @@ export default function AddClientModal() {
                                 className="modal-title fs-5"
                                 id="addClientModalLabel"
                             >
-                                Modal title
+                                Add Client
                             </h1>
                             <button
                                 type="button"
@@ -41,7 +51,7 @@ export default function AddClientModal() {
                             ></button>
                         </div>
                         <div className="modal-body">
-                            <form className="mb-3">
+                            <form className="mb-3" onSubmit={onSubmit}>
                                 <div>
                                     <label
                                         className="form-label"
@@ -49,8 +59,53 @@ export default function AddClientModal() {
                                     >
                                         Name
                                     </label>
-                                    <input type="text" id="name" />
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        id="name"
+                                        value={name}
+                                        onChange={(e) =>
+                                            setName(e.target.value)
+                                        }
+                                    />
+                                    <label
+                                        className="form-label"
+                                        htmlFor="email"
+                                    >
+                                        Email
+                                    </label>
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) =>
+                                            setEmail(e.target.value)
+                                        }
+                                    />
+                                    <label
+                                        className="form-label"
+                                        htmlFor="phone"
+                                    >
+                                        Phone
+                                    </label>
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        id="phone"
+                                        value={phone}
+                                        onChange={(e) =>
+                                            setPhone(e.target.value)
+                                        }
+                                    />
                                 </div>
+                                <button
+                                    type="submit"
+                                    className="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Submit
+                                </button>
                             </form>
                         </div>
                     </div>
