@@ -76,8 +76,8 @@ export default function AddClientModal() {
                             ></button>
                         </div>
                         <div className="modal-body">
-                            <form className="mb-3" onSubmit={onSubmit}>
-                                <div>
+                            <form onSubmit={onSubmit}>
+                                <div className="mb-3">
                                     <label
                                         className="form-label"
                                         htmlFor="name"
@@ -93,6 +93,8 @@ export default function AddClientModal() {
                                             setName(e.target.value)
                                         }
                                     />
+                                </div>
+                                <div className="mb-3">
                                     <label
                                         className="form-label"
                                         htmlFor="email"
@@ -108,6 +110,8 @@ export default function AddClientModal() {
                                             setEmail(e.target.value)
                                         }
                                     />
+                                </div>
+                                <div className="mb-3">
                                     <label
                                         className="form-label"
                                         htmlFor="phone"

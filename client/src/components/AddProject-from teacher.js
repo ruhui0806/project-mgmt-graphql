@@ -1,26 +1,18 @@
-//this is the code that doesn't work!
-
-import { useMutation, useQuery } from '@apollo/client'
-import React from 'react'
 import { useState } from 'react'
-import { FaListUl } from 'react-icons/fa'
-import { GET_CLIENTS } from '../queries/clientQueries'
+import { FaList } from 'react-icons/fa'
+import { useMutation, useQuery } from '@apollo/client'
 import { ADD_PROJECT } from '../mutations/projectMutations'
 import { GET_PROJECTS } from '../queries/projectQueries'
+import { GET_CLIENTS } from '../queries/clientQueries'
 
-export default function AddProjectModal({ people }) {
+export default function AddProjectModal() {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [status, setStatus] = useState('')
     const [clientId, setClientId] = useState('')
+    const [status, setStatus] = useState('new')
 
     const [addProject] = useMutation(ADD_PROJECT, {
-        variables: {
-            name: name,
-            description: description,
-            clientId: clientId,
-            status: status,
-        },
+        variables: { name, description, clientId, status },
         update(cache, { data: { addProject } }) {
             const { projects } = cache.readQuery({ query: GET_PROJECTS })
             cache.writeQuery({
@@ -29,31 +21,30 @@ export default function AddProjectModal({ people }) {
             })
         },
     })
+
+    // Get Clients for select
     const { loading, error, data } = useQuery(GET_CLIENTS)
 
     const onSubmit = (e) => {
         e.preventDefault()
+
         if (name === '' || description === '' || status === '') {
             return alert('Please fill in all fields')
         }
-        addProject(name, description, status, clientId)
+
+        addProject(name, description, clientId, status)
 
         setName('')
         setDescription('')
         setStatus('new')
         setClientId('')
-        console.log(data.clients, data.clients[0].id, data.clients[0].name)
-
-        if (loading) {
-            return null
-        }
-        if (error) {
-            return 'Something went wrong  T__T '
-        }
     }
 
+    if (loading) return null
+    if (error) return 'Something Went Wrong'
+
     return (
-        <div>
+        <>
             {!loading && !error && (
                 <>
                     <button
@@ -63,7 +54,7 @@ export default function AddProjectModal({ people }) {
                         data-bs-target="#addProjectModal"
                     >
                         <div className="d-flex align-items-center">
-                            <FaListUl className="icon" />
+                            <FaList className="icon" />
                             <div>New Project</div>
                         </div>
                     </button>
@@ -77,13 +68,12 @@ export default function AddProjectModal({ people }) {
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h1
-                                        className="modal-title fs-5"
+                                    <h5
+                                        className="modal-title"
                                         id="addProjectModalLabel"
                                     >
                                         New Project
-                                    </h1>
-
+                                    </h5>
                                     <button
                                         type="button"
                                         className="btn-close"
@@ -98,8 +88,8 @@ export default function AddProjectModal({ people }) {
                                                 Name
                                             </label>
                                             <input
-                                                className="form-control"
                                                 type="text"
+                                                className="form-control"
                                                 id="name"
                                                 value={name}
                                                 onChange={(e) =>
@@ -113,7 +103,6 @@ export default function AddProjectModal({ people }) {
                                             </label>
                                             <textarea
                                                 className="form-control"
-                                                type="text"
                                                 id="description"
                                                 value={description}
                                                 onChange={(e) =>
@@ -128,8 +117,8 @@ export default function AddProjectModal({ people }) {
                                                 Status
                                             </label>
                                             <select
-                                                className="form-select"
                                                 id="status"
+                                                className="form-select"
                                                 value={status}
                                                 onChange={(e) =>
                                                     setStatus(e.target.value)
@@ -146,6 +135,7 @@ export default function AddProjectModal({ people }) {
                                                 </option>
                                             </select>
                                         </div>
+
                                         <div className="mb-3">
                                             <label className="form-label">
                                                 Client
@@ -161,7 +151,6 @@ export default function AddProjectModal({ people }) {
                                                 <option value="">
                                                     Select Client
                                                 </option>
-
                                                 {data.clients.map((client) => (
                                                     <option
                                                         key={client.id}
@@ -172,10 +161,11 @@ export default function AddProjectModal({ people }) {
                                                 ))}
                                             </select>
                                         </div>
+
                                         <button
                                             type="submit"
-                                            className="btn btn-primary"
                                             data-bs-dismiss="modal"
+                                            className="btn btn-primary"
                                         >
                                             Submit
                                         </button>
@@ -186,6 +176,6 @@ export default function AddProjectModal({ people }) {
                     </div>
                 </>
             )}
-        </div>
+        </>
     )
 }
