@@ -6,6 +6,7 @@ export default function AddProjectModal() {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [status, setStatus] = useState('')
+    const [clientId, setClientId] = useState('')
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -17,7 +18,7 @@ export default function AddProjectModal() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-toggle="modal"
-                data-bs-target="#addClientModal"
+                data-bs-target="#addProjectModal"
             >
                 <div className="d-flex align-items-center">
                     <FaListUl className="icon" />
@@ -27,8 +28,8 @@ export default function AddProjectModal() {
 
             <div
                 className="modal fade"
-                id="addClientModal"
-                aria-labelledby="addClientModalLabel"
+                id="addProjectModal"
+                aria-labelledby="addProjectModalLabel"
                 aria-hidden="true"
             >
                 <div className="modal-dialog">
@@ -36,7 +37,7 @@ export default function AddProjectModal() {
                         <div className="modal-header">
                             <h1
                                 className="modal-title fs-5"
-                                id="addClientModalLabel"
+                                id="addProjectModalLabel"
                             >
                                 New Project
                             </h1>
@@ -48,8 +49,8 @@ export default function AddProjectModal() {
                             ></button>
                         </div>
                         <div className="modal-body">
-                            <form className="mb-3" onSubmit={onSubmit}>
-                                <div>
+                            <form onSubmit={onSubmit}>
+                                <div className="mb-3">
                                     <label
                                         className="form-label"
                                         htmlFor="name"
