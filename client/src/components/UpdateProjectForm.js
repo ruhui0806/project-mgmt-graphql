@@ -77,11 +77,7 @@ export default function UpdateProjectForm({ project }) {
                         <option value="completed">Completed</option>
                     </select>
                 </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary"
-                    data-bs-dismiss="modal"
-                >
+                <button type="submit" className="btn btn-primary">
                     Update Project
                 </button>
             </form>
