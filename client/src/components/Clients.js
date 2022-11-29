@@ -9,7 +9,6 @@ const Clients = () => {
     if (error) return <div>Error!</div>
     return (
         <>
-            {/* <p>client</p> */}
             {!loading && !error && (
                 <table className="table table-hover mt-3">
                     <thead>
