@@ -16,7 +16,7 @@ function App() {
             <ApolloProvider client={client}>
                 <Router>
                     <Header />
-                    <div className="container gap-2 fluid d-inline-flex mb-3">
+                    <div className="container">
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="*" element={<NotFound />} />

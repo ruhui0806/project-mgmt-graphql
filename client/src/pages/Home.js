@@ -6,7 +6,7 @@ import AddProjectModal from '../components/AddProject'
 export default function Home() {
     return (
         <div>
-            <div className="d-inline-flex gap-3 mb-4">
+            <div className="d-flex gap-3 mb-4">
                 <AddClientModal />
                 <AddProjectModal />
             </div>
