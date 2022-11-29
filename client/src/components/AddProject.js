@@ -11,7 +11,7 @@ import { GET_PROJECTS } from '../queries/projectQueries'
 export default function AddProjectModal({ people }) {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('new')
     const [clientId, setClientId] = useState('')
 
     const [addProject] = useMutation(ADD_PROJECT, {

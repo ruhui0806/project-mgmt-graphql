@@ -3,7 +3,7 @@ import { FaIdBadge, FaEnvelope, FaPhoneSquare } from 'react-icons/fa'
 
 export default function ClientInfo({ client }) {
     return (
-        <div>
+        <div className="mb-4">
             <h5 className="mt-5">Client Information</h5>
             <ul className="list-group">
                 <li className="list-group-item">

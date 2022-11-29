@@ -12,7 +12,7 @@ export default function Header() {
                             width="34"
                             height="32"
                         />
-                        ProjectMgmt
+                        Project Management Application
                     </div>
                 </a>
             </div>
