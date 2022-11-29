@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client'
 import { Link, useParams } from 'react-router-dom'
 import ClientInfo from '../components/ClientInfo'
 import DeletProjectButton from '../components/DeleteProjectButton'
-
+import UpdateProjectForm from '../components/UpdateProjectForm'
 export default function Project() {
     const { id } = useParams()
     const { loading, error, data } = useQuery(GET_PROJECT, {
@@ -30,6 +30,7 @@ export default function Project() {
                     <p className="lead">{data.project.status}</p>
 
                     <ClientInfo client={data.project.client} />
+                    <UpdateProjectForm project={data.project} />
                     <DeletProjectButton projectID={data.project.id} />
                 </div>
             )}
