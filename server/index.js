@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const colors = require('colors')
 const { graphqlHTTP } = require('express-graphql')
 const schema = require('./schema/schema')
-// const connectDB = require('./config/db')
+const connectDB = require('./config/db')
 const port = process.env.PORT || 8000
 
 const app = express()
@@ -12,12 +12,12 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.static('build'))
 
-// //connect to database
-// connectDB()
-const url = process.env.MONGO_URI
-mongoose
-    .connect(`${url}`)
-    .then(console.log(`MongoDB connected`.cyan.underline.bold))
+//connect to database
+connectDB()
+// const url = process.env.MONGO_URI
+// mongoose
+//     .connect(url)
+//     .then(console.log(`MongoDB connected`.cyan.underline.bold))
 
 app.use(
     '/graphql',
