@@ -1,6 +1,6 @@
 const express = require('express')
-const mongoose = require('mongoose')
 require('dotenv').config()
+const mongoose = require('mongoose')
 const colors = require('colors')
 const { graphqlHTTP } = require('express-graphql')
 const schema = require('./schema/schema')
@@ -14,10 +14,8 @@ app.use(express.static('build'))
 
 // //connect to database
 // connectDB()
-
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(console.log(`MongoDB connected`.cyan.underline.bold))
+const url = process.env.MONGO_URI.toString()
+mongoose.connect(url).then(console.log(`MongoDB connected`.cyan.underline.bold))
 
 app.use(
     '/graphql',
