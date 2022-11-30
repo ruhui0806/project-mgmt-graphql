@@ -14,8 +14,10 @@ app.use(express.static('build'))
 
 // //connect to database
 // connectDB()
-const url = String(process.env.MONGO_URI)
-mongoose.connect(url).then(console.log(`MongoDB connected`.cyan.underline.bold))
+const url = process.env.MONGO_URI
+mongoose
+    .connect(`${url}`)
+    .then(console.log(`MongoDB connected`.cyan.underline.bold))
 
 app.use(
     '/graphql',
