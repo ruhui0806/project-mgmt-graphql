@@ -17,9 +17,16 @@ app.use(
     '/graphql',
     graphqlHTTP({
         schema,
-        graphiql: process.env.NODE_ENV === 'development',
+        graphiql: process.env.NODE_ENV,
     })
 )
+// app.use(
+//     '/graphql',
+//     graphqlHTTP({
+//         schema,
+//         graphiql: process.env.NODE_ENV === 'development',
+//     })
+// )
 //graphiql only set to be true if process.env.NODE_ENV === 'development' is true;
 
 app.listen(port, console.log(`server running on ${port}`))
