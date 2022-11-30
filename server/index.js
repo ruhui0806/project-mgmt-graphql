@@ -14,7 +14,7 @@ app.use(express.static('build'))
 
 // //connect to database
 // connectDB()
-const url = process.env.MONGO_URI.toString()
+const url = String(process.env.MONGO_URI)
 mongoose.connect(url).then(console.log(`MongoDB connected`.cyan.underline.bold))
 
 app.use(
