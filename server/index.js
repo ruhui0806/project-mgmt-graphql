@@ -1,7 +1,6 @@
 const express = require('express')
 require('dotenv').config()
 const mongoose = require('mongoose')
-const colors = require('colors')
 const { graphqlHTTP } = require('express-graphql')
 const schema = require('./schema/schema')
 const { ApolloServer, gql } = require('apollo-server-express')
@@ -18,9 +17,9 @@ const url = process.env.MONGO_URI
 mongoose.set('strictQuery', true)
 mongoose
     .connect(url)
-    .then((res) => console.log('Connected to MongoDB'))
+    .then((res) => console.log('Connected to Mongo DB successfully'))
     .catch((err) =>
-        console.log('Error occured when connecting to MongoDB: ', err)
+        console.log('Error occured when connecting to MongoDB: ', err.message)
     )
 
 app.use(
