@@ -7,9 +7,8 @@
         "node": "16.17.1"
     },
     "scripts": {
-        "start": "node server/index.js",
-        "dev": "nodemon server/index.js",
-        "deploy": "fly deploy",
+        "start": "NODE_ENV=production node server/index.js",
+        "dev": "NODE_ENV=development nodemon server/index.js",
         "build:ui": "rm -rf build && cd ./client/ && npm run build && cp -r build ../",
         "deploy:full": "npm run build:ui && npm run deploy"
     },
