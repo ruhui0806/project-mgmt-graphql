@@ -14,10 +14,9 @@ import Project from './pages/Project'
 //     uri: 'http://localhost:8000/graphql',
 //     cache: new InMemoryCache(),
 // })
-const httpLink = new HttpLink({ uri: '/graphql' })
+
 const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
+    link: '/graphql',
 })
 
 function App() {
