@@ -10,7 +10,10 @@ const port = process.env.PORT || 8000
 const app = express()
 const cors = require('cors')
 app.use(cors())
-app.use(express.static('build'))
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'))
+}
 
 // connect to database
 const url = process.env.MONGO_URI
