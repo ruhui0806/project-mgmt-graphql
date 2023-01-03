@@ -13,9 +13,9 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.static('build'))
 
-//connect to database
+// connect to database
 const url = process.env.MONGO_URI
-
+mongoose.set('strictQuery', true)
 mongoose
     .connect(url)
     .then((res) => console.log('Connected to MongoDB'))
