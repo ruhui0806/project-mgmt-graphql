@@ -2,7 +2,7 @@ const express = require('express')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const { graphqlHTTP } = require('express-graphql')
-const schema = require('./schema/schema')
+const schema = require('./server/schema/schema')
 const { ApolloServer, gql } = require('apollo-server-express')
 
 const port = process.env.PORT || 8000
