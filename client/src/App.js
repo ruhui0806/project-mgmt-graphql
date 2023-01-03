@@ -16,7 +16,7 @@ import Project from './pages/Project'
 // })
 
 const client = new ApolloClient({
-    link: '/graphql',
+    uri: '/graphql',
 })
 
 function App() {
