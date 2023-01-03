@@ -11,10 +11,6 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('build'))
-}
-
 // connect to database
 const url = process.env.MONGO_URI
 mongoose.set('strictQuery', true)
@@ -32,6 +28,11 @@ app.use(
         graphiql: true,
     })
 )
-// graphiql only set to be true if process.env.NODE_ENV === 'development' is true: graphiql: process.env.NODE_ENV === 'development'
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 app.listen(port, console.log(`server running on ${port}`))
