@@ -77,15 +77,6 @@ const RootQuery = new GraphQLObjectType({
     },
 })
 
-//make a 'projects' query
-// query {
-//     projects
-//     {
-//     name,
-//     client {name, email}
-//       }
-//   }
-
 //mutations
 const myMutations = new GraphQLObjectType({
     name: 'Mutation',
@@ -108,13 +99,16 @@ const myMutations = new GraphQLObjectType({
                 // Client.create()
             },
         },
-        //delete a client:
+        //delete a client: (also delete all the projects created by this client)
         deleteClient: {
             type: ClientType,
             args: {
                 id: { type: GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, args) {
+                Project.find({ clientId: args.id }).then((project) => {
+                    project.forEach((project) => project.remove)
+                })
                 return Client.findByIdAndRemove(args.id)
             },
         },
